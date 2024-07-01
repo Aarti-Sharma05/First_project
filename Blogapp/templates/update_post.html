@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Edit Blog Post {% endblock %}
+{% block content %}
+<br>
+<br>
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+       <h3 style="color: black; text-align: center;"><strong>Update Post .. </strong></h3>
+       <h5 style="text-align: center; color: black;">Keep the buzz alive – Update your post with fresh content now!</h5>
+        <br>
+        <br>
+        <div class="form-group1">
+        <form method="POST" placeholder="Edit Post">
+          {% csrf_token %}
+          {{form.as_p}}
+        <button class="btn btn-secondary" name="action" value="save">Save &nbsp;</button>
+        
+        <a href="{% url 'home' %}"><button class="btn btn-secondary" name="action" value="cancel" type="cancel">&nbsp;Cancel</button></a>
+        </form>
+        </div>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Register {% endblock %}
+{% block content %}
+<br>
+<br>
+<h3 style="color: black; padding-left: 45px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><strong>Unlock Your Potential: Register and Join the Journey! </strong></h3>
+<br>
+<br>
+<div class="form-group1">
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-secondary">Signup</button>
+</form>
+<p style="padding-top: 20px; padding-bottom: 20px; font-size: 20px;">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+</div>
+{% endblock %}

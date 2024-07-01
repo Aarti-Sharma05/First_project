@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Delete Blog Post {% endblock %}
+{% block content %}
+<br>
+<br>
+{% if user.is_authenticated %}
+   {% if user.id == post.author.id %}
+      -<h3><strong>Delete Post ..{{post.title}} </strong></h3>
+       <br>
+       <br>
+      <form method="POST" >
+        {% csrf_token %}
+       <small>Are you sure ? </small>
+      <button class="btn btn-secondary" name="action" value="delete">Delete</button> 
+      <button class="btn btn-secondary" name="action" type="cancel" value="cancel">&nbsp;Cancel</button>
+       </form>
+    {% endif %}
+  
+{% else %}
+    -You are not authorized user to delete the content 
+  
+{% endif %}
+ 
+{% endblock %} 

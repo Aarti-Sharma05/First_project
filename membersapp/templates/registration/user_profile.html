@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="pp" style=" height: 100%; text-align: center;">
+<li class="post-container1">
+    <div class="post-header">
+        <div class="author-details" style="text-align: center;">
+          {% if page_user.profile_pic %}
+            <img src="{{page_user.profile_pic.url}}" height="150" width="150" class="rounded-circle" alt="...">
+          {% else %}
+            <img src="/static/images/download.jpg"  height="150" width="150" class="rounded-circle" alt="...">
+          {% endif %}
+            <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{page_user}}">
+                {{ page_user }}</span>
+        </div>
+        <div id="datend">
+            <small>Date joined :{{date_joined.date_joined}}</small>
+        </div>
+    </div>
+    <h4 style="text-align: center;">{{ page_user.bio }}</h4>
+    {% if page_user.facebook %}
+    <h6><a href="#">facebook :</a></h6>
+    {% endif %}
+    {% if page_user.Instagram %}
+    <h6> <a href="#">instagram:</a></h6> 
+    {% endif %}
+    {% if page_user.twitter %}
+    <h6><a href="#">twitter:</a></h6> 
+    {% endif %}
+</li>
+{% if user.profile.id %}
+  <a href="{% url 'edit_profile_page' user.id%}">Update profile</a>
+{% endif %}
+{% if post.author.profile.id == user.profile.id %}
+  <a href="{%  url 'edit_profile_page' user.id %}">Update profile</a>
+{% endif %}
+</div>
+{% endblock %}
