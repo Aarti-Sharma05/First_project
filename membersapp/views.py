@@ -1,17 +1,16 @@
 from django.db.models.base import Model as Model
-from django.db.models.query import QuerySet
 from django.views import generic
 from django.urls import reverse_lazy
 from .forms import Signup
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from .forms import EditProfileForm
-from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render
-from Blogapp.models import Profile,Post
-from django.shortcuts import get_object_or_404,HttpResponse
+from Blogapp.models import Profile
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class Editprofilepage(generic.UpdateView):
     model=Profile
@@ -26,8 +25,7 @@ class CustomLoginView(LoginView):
         if not hasattr(user, 'profile'):
             return redirect('create_profile')
         else:
-            return super().form_valid(form)
-    
+            return redirect('home')   
 
 class User_Register(generic.CreateView):
     form_class= Signup
@@ -38,20 +36,13 @@ def logoutview(request):
     logout(request)
     return redirect('main_page')
 
-class CreateProfile(generic.CreateView):
+
+class CreateProfile(LoginRequiredMixin,generic.CreateView):
     model = Profile
     template_name = 'registration/create_profile.html'
-    success_url = reverse_lazy('home')  # Adjust 'home' to your actual home page URL
+    success_url = reverse_lazy('home')  
     fields = ['bio', 'profile_pic', 'facebook', 'Instagram', 'twitter']
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated and not hasattr(request.user, 'profile'):
-            return super().dispatch(request, *args, **kwargs)
-        elif(request.user.is_authenticated):
-            return redirect('home')  # Redirect if user is not authenticated or already has a profile
-        else:
-            return HttpResponse("you're not authenticated")
-        
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)

@@ -40,17 +40,6 @@ class Home(ListView):
         context["cat_menu"]=cat_menu
         return context
 
-
-def Categoryview(request,cats):
-    if request.method=="POST":
-        searched=request.Post('searched')
-        category=Category.objects.filter(name__contains=searched)
-        return render(request,'categories.html',{'searched':searched,'category':category})
-    else:
-      Category_posts=Post.objects.filter(category=cats.replace('-',' '))
-      return render(request,'categories.html',{'cats':cats.replace('-',' '),'Category_posts':Category_posts})
-
-
 class ArticleDetail(DetailView):
     model=Post
     template_name="article_details.html"
@@ -72,11 +61,6 @@ class Add_Post(CreateView):
     model=Post
     form_class =PostForm
     template_name="add_post.html"
-
-class AddCategory(CreateView):
-    model=Category
-    template_name='add_category.html'
-    fields='__all__'
 
 class Update_Post(UpdateView):
     model=Post
