@@ -15,13 +15,16 @@ class Category(models.Model):
 class Profile(models.Model):
     user=models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     bio=models.TextField(max_length=255)
-    profile_pic=models.ImageField(default="static/images/download.jpg",upload_to="images/profile/")
+    profile_pic=models.ImageField(null=True,blank=True,upload_to="images/profile/")
     facebook=models.CharField(max_length=255,null=True,blank=True)
     Instagram=models.CharField(max_length=255,null=True,blank=True)
     twitter=models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):
         return str(self.user)
+    
+    def get_absolute_url(self):
+        return reverse('home')
 
 class Post(models.Model):
 

@@ -3,14 +3,13 @@
 {% block content %}
 <div id="login-content">
   <div class="background-section">
-  <video  muted plays-inline class="background-clip">
+  <video  muted autoplay loop class="background-clip">
     <source src="/media/tech2.mp4" type="video/mp4">
   </video>
   <div class="border-container">
     <div class="form-group">
-      <form method="POST">
+      <form method="POST" action="{% url 'login_page' %}">
         {% csrf_token %}
-        <img src="/static/images/1000067675-removebg-preview.png" height="250px" width="250px" style="justify-items: center;">
         {{form.as_p}}
         <div class="d-grid gap-2 col-6 mx-auto">
           <button class="btn btn-secondary" type="submit" data-bs-toggle="button" style="margin-top: 20px;">Log In</button>

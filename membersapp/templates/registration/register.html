@@ -7,7 +7,7 @@
 <br>
 <br>
 <div class="form-group1">
-<form method="POST">
+<form method="POST" action="{% url 'register' %}">
     {% csrf_token %}
     {{form.as_p}}
     <button class="btn btn-secondary">Signup</button>

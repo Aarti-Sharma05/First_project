@@ -4,6 +4,12 @@ html, body {
     height: 100%;
     width: 100%;
 }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure body covers the entire viewport height */
+}
+
 html{
   scroll-behavior: smooth;
 }
@@ -188,7 +194,8 @@ html{
 /*------------Home page ------------------*/
 #home-content{
     background-color: black;
-    min-height: calc(100vh - 100px);
+    flex: 1;
+    margin-bottom: -10px;
 }
 .footer{
   height: 100px;
@@ -623,7 +630,7 @@ html{
 }
 
 .post-container1 {
-  background-color: #ccc;
+  background-color: black;
   display: flex;
   height: 50vh;
   flex-direction: column;
@@ -640,13 +647,13 @@ html{
 .post-container1 a{
   padding-left: 50px;
   text-decoration: none;
-  color: black;
+  color: white;
   font-weight: 200;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 .post-container1 a:hover{
   content-visibility: visible;
-  color: black;
+  color: white;
   text-decoration: none;
   text-shadow: #fff;
 }
