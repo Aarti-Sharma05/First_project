@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %} login-content {% endblock %}
 {% block content %}
-<div id="login-content">
+<!--<div id="login-content">
   <div class="background-section">
   <video  muted autoplay loop class="background-clip">
     <source src="/media/tech2.mp4" type="video/mp4">
@@ -20,6 +20,44 @@
   </div>
 </div>
 </div>
-
-
+>-->
+<!--<div id="login-content" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+  <video  muted autoplay loop class="background-clip" >
+    <source src="/media/tech2.mp4" type="video/mp4">
+  </video>
+  <div class="d-grid gap-2 col-3 mx-auto">
+    <div class="form-group">
+      <form method="POST" action="{% url 'login_page' %}">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="d-grid gap-2 col-4 mx-auto">
+          <button class="btn btn-secondary" type="submit" data-bs-toggle="button">Login</button>
+        </div>
+      </form>
+      <p style="padding-top: 10px;">Don't have an account?<a href="{% url 'register' %}">Signup</a></p>
+    </div>
+  </div>
+</div>
+-->
+<div class="wrapper">
+  <div class="background-section">
+      <video autoplay loop muted plays-inline class="background-clip">
+         <source src="/media/tech2.mp4" type="video/mp4">
+      </video>
+      <div class="content" style="display: flexbox; text-align: center; margin-top: 180px; color: bisque;">
+        <div class="form-group">
+          <form method="POST" action="{% url 'login_page' %}">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="d-grid gap-2 col-4 mx-auto">
+              <button class="btn btn-secondary" type="submit" data-bs-toggle="button">Login</button>
+            </div>
+          </form>
+          <p style="padding-top: 10px;">Don't have an account?<a href="{% url 'register' %}">Signup</a></p>
+        </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  
 {% endblock %}
